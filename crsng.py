@@ -48,6 +48,9 @@ class AppMainWindow(QtWidgets.QMainWindow):
         self.menuhelp = QtWidgets.QMenu(self.menubar)
         self.menuhelp.setObjectName('menuhelp')
         self.menuhelp.setTitle('Help')
+        self.menusettings = QtWidgets.QMenu(self.menubar)
+        self.menusettings.setObjectName('menusettings')
+        self.menusettings.setTitle('Settings')
         self.setMenuBar(self.menubar)
         
         #  Organize statusbar for future needs
@@ -69,23 +72,28 @@ class AppMainWindow(QtWidgets.QMainWindow):
         self.actionSaveAll.setShortcut("Ctrl+S")
         self.actionEditChamp = QtWidgets.QAction(self)
         self.actionEditChamp.setObjectName("actionEditChamp")
-        self.actionEditChamp.setText("Competition settings")
+        self.actionEditChamp.setText("Competition settings...")
         self.actionDogsDB = QtWidgets.QAction(self)
         self.actionDogsDB.setObjectName("actionDogsDB")
-        self.actionDogsDB.setText("Dogs database")
-
-        self.menufile.addAction(self.actionDogsDB)
-        self.menufile.addSeparator()
-        self.menufile.addAction(self.actionEditChamp)
-        self.menufile.addSeparator()
+        self.actionDogsDB.setText("Manage dogs...")
+        self.actionBreeds = QtWidgets.QAction(self)
+        self.actionBreeds.setObjectName("actionBreeds")
+        self.actionBreeds.setText("Manage breeds...")
+        
         self.menufile.addAction(self.actionSaveAll)
         self.menufile.addSeparator()
         self.menufile.addAction(self.actionExit)
+        self.menusettings.addAction(self.actionEditChamp)
+        self.menusettings.addAction(self.actionDogsDB)
+        self.menusettings.addAction(self.actionBreeds)
         self.menuhelp.addAction(self.actionAbout)
         self.menubar.addAction(self.menufile.menuAction())
+        self.menubar.addAction(self.menusettings.menuAction())
         self.menubar.addAction(self.menuhelp.menuAction())
 
         self.actionDogsDB.triggered.connect(self.say)
+        self.actionBreeds.triggered.connect(self.say)
+        self.actionEditChamp.triggered.connect(self.say)
         
         
     #  Service function
