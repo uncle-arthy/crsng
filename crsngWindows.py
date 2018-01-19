@@ -11,3 +11,8 @@ class BreedsManager(QtWidgets.QWidget):
         self.db = database_handler
         
         #  Decorate window
+        self.initUI()
+        
+        
+    def initUI(self):
+        pass

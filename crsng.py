@@ -16,6 +16,10 @@ class AppMainWindow(QtWidgets.QMainWindow):
         #  Init database handler
         self.db = DatabaseHandler()
         
+        self.initUI()
+        
+    def initUI(self):
+        
         #  Decorate main window
         self.setObjectName("MainWindow")
         self.resize(1280, 900)
@@ -94,7 +98,7 @@ class AppMainWindow(QtWidgets.QMainWindow):
         self.actionDogsDB.triggered.connect(self.say)
         self.actionBreeds.triggered.connect(self.say)
         self.actionEditChamp.triggered.connect(self.say)
-        
+        self.actionExit.triggered.connect(app.quit)
         
     #  Service function
     def say(self, txt="WTF?!"):
