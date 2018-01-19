@@ -14,7 +14,7 @@ class DecoratedWindow(QtWidgets.QWidget):
         self.setFont(font)
 
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("res/crsng_icon_16.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("res/crsng_png_icon_64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(icon)
 
 
@@ -57,10 +57,28 @@ class DogManager(DecoratedWindow):
         self.initUI()
         
     def initUI(self):
-        top_shelve = QtWidgets.QHBoxLayout()
-        vbox = QtWidgets.QVBoxLayout(self)
-        self.setLayout(vbox)
+        #top_shelve = QtWidgets.QHBoxLayout()
+        self.vbox = QtWidgets.QVBoxLayout()
+        
+        self.create_dog_table()
+        self.update_dog_table()
+        
+        #vbox.addWidget(top_shelve)
+        self.vbox.addWidget(self.dog_table)
+        self.setLayout(self.vbox)
         
         self.setGeometry(200, 200, 1024, 768)
         self.setWindowTitle('Dog manager | CRSNG')
         self.show()
+        
+    def create_dog_table(self):
+        self.dog_table = QtWidgets.QTableWidget()
+        self.dog_table.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.dog_table.setAlternatingRowColors(True)
+        self.dog_table.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.dog_table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.dog_table.setRowCount(10)
+        self.dog_table.setColumnCount(6)
+        
+    def update_dog_table(self):
+        pass

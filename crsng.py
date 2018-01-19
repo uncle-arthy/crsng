@@ -32,7 +32,7 @@ class AppMainWindow(QtWidgets.QMainWindow):
         self.setFont(font)
         
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("res/crsng_icon_16.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("res/crsng_png_icon_64.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(icon)
         
         #  Organize central widget where all stuff will be
