@@ -7,6 +7,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from crsngDBHandler import DatabaseHandler
+from crsngWindows import BreedsManager, DogManager, DecoratedWindow
 
 
 class AppMainWindow(QtWidgets.QMainWindow):
@@ -23,15 +24,15 @@ class AppMainWindow(QtWidgets.QMainWindow):
         #  Decorate main window
         self.setObjectName("MainWindow")
         self.resize(1280, 900)
-        self.setWindowTitle("crsng | Main")
+        self.setWindowTitle("CRSNG 2018.0.1")
         
         font = QtGui.QFont()
         font.setFamily("Calibri")
-        font.setPointSize(10)
+        font.setPointSize(11)
         self.setFont(font)
         
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("res/Stripes_icon.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("res/crsng_icon_16.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setWindowIcon(icon)
         
         #  Organize central widget where all stuff will be
@@ -95,8 +96,8 @@ class AppMainWindow(QtWidgets.QMainWindow):
         self.menubar.addAction(self.menusettings.menuAction())
         self.menubar.addAction(self.menuhelp.menuAction())
 
-        self.actionDogsDB.triggered.connect(self.say)
-        self.actionBreeds.triggered.connect(self.say)
+        self.actionDogsDB.triggered.connect(self.show_dog_manager)
+        self.actionBreeds.triggered.connect(self.show_breeds)
         self.actionEditChamp.triggered.connect(self.say)
         self.actionExit.triggered.connect(app.quit)
         
@@ -106,6 +107,14 @@ class AppMainWindow(QtWidgets.QMainWindow):
             print("I say " + str(txt))
         except:
             print("Something goes wrong...")
+            
+    #  Breed manager
+    def show_breeds(self):
+        self.breeds_window = BreedsManager(self.db)
+        
+    #  Dog manager
+    def show_dog_manager(self):
+        self.dog_manager = DogManager(self.db)
         
 
 if __name__ == '__main__':
