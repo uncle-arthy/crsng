@@ -57,13 +57,21 @@ class DogManager(DecoratedWindow):
         self.initUI()
         
     def initUI(self):
-        #top_shelve = QtWidgets.QHBoxLayout()
+        self.top_shelve_layout = QtWidgets.QHBoxLayout()
         self.vbox = QtWidgets.QVBoxLayout()
+        self.top_shelve = QtWidgets.QFrame(self)
+        self.top_shelve.setLayout(self.top_shelve_layout)
+
         
         self.create_dog_table()
         self.update_dog_table()
         
-        #vbox.addWidget(top_shelve)
+        self.add_dog_btn = QtWidgets.QPushButton()
+        self.add_dog_btn.setText('Add dog')
+        self.top_shelve_layout.addWidget(self.add_dog_btn)
+        self.top_shelve_layout.addStretch()
+        
+        self.vbox.addWidget(self.top_shelve)
         self.vbox.addWidget(self.dog_table)
         self.setLayout(self.vbox)
         
