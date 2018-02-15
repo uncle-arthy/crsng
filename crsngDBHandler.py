@@ -20,3 +20,13 @@ class DatabaseHandler(object):
         self.con.commit()
         print('Closing connection with DB...')
         self.con.close()
+        
+    def test_list(self):
+        sample_breeds = ["Whippet", "Borzoi", "Italian greyhound",
+                         "Basenji", "Saluki", "Greyhound",
+                         "Thai ridgeback", "Rodesian ridgeback",
+                         "Beagle", "Irish wolfhound"]
+        
+        sample_fetched_result = enumerate(sample_breeds, start=1)
+        
+        return sample_fetched_result
