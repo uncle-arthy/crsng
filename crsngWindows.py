@@ -127,7 +127,8 @@ class AddDogWindow(DecoratedWindow):
         self.dog_breed_entry = QtWidgets.QComboBox()
         self.dog_gender_entry = QtWidgets.QComboBox()
         self.dog_owner_entry = QtWidgets.QLineEdit()
-        self.dog_birth_entry = QtWidgets.QLineEdit()
+        self.dog_birth_entry = QtWidgets.QDateEdit()
+        self.dog_birth_entry.setDisplayFormat("dd.MM.yyyy")
         self.dog_doc_entry = QtWidgets.QLineEdit()
         self.dog_racebook_entry = QtWidgets.QLineEdit()
         self.dog_tattoo_entry = QtWidgets.QLineEdit()
@@ -150,8 +151,28 @@ class AddDogWindow(DecoratedWindow):
         
         self.setWindowModality(QtCore.Qt.ApplicationModal)  # Make window modal
         
+        # Set data for Breeds etc.
+        for i, breed in self.db.test_list():
+            self.dog_breed_entry.addItem(breed, i)
+            
+        self.dog_gender_entry.addItems(["Male", "Female"])
+        
         self.show()
         
     def add_dog_handler(self):
         print("Adding Dog...")
+        
+        dog_dict = {}
+        dog_dict["name"] = self.dog_name_entry.text()
+        dog_dict["breed_id"] = self.dog_breed_entry.currentData()
+        dog_dict["breed_name"] = self.dog_breed_entry.currentText()
+        dog_dict["gender"] = self.dog_gender_entry.currentText()
+        dog_dict["owner"] = self.dog_owner_entry.text()
+        dog_dict["birthday"] = self.dog_birth_entry.date()
+        dog_dict["doc"] = self.dog_doc_entry.text()
+        dog_dict["racebook"] = self.dog_racebook_entry.text()
+        dog_dict["tattoo"] = self.dog_tattoo_entry.text()
+
+        self.db.add_dog_to_db(dog_dict)
+        
         self.close()

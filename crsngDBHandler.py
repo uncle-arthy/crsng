@@ -21,6 +21,9 @@ class DatabaseHandler(object):
         print('Closing connection with DB...')
         self.con.close()
         
+    def add_dog_to_db(self, dog_dict):
+        print(dog_dict)
+        
     def test_list(self):
         sample_breeds = ["Whippet", "Borzoi", "Italian greyhound",
                          "Basenji", "Saluki", "Greyhound",
