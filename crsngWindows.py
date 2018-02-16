@@ -152,7 +152,7 @@ class AddDogWindow(DecoratedWindow):
         self.setWindowModality(QtCore.Qt.ApplicationModal)  # Make window modal
         
         # Set data for Breeds etc.
-        for i, breed in self.db.test_list():
+        for i, breed in self.db.get_breeds():
             self.dog_breed_entry.addItem(breed, i)
             
         self.dog_gender_entry.addItems(["Male", "Female"])
