@@ -22,7 +22,22 @@ class DatabaseHandler(object):
         self.con.close()
         
     def add_dog_to_db(self, dog_dict):
-        print(dog_dict)
+        
+        qry = QtSql.QSqlQuery()
+        qry.prepare('INSERT INTO dogs (name, breed_id, gender, owner, birth, doc, racebook, tattoo)'
+                    'VALUES (:name, :breed_id, :gender, :owner, :birth, :doc, :racebook, :tattoo)')
+        
+        qry.bindValue(':name', dog_dict["name"])
+        qry.bindValue(':breed_id', dog_dict["breed_id"])
+        qry.bindValue(':gender', dog_dict["gender"])
+        qry.bindValue(':owner', dog_dict["owner"])
+        qry.bindValue(':birth', dog_dict["birthday"])
+        qry.bindValue(':doc', dog_dict["doc"])
+        qry.bindValue(':racebook', dog_dict["racebook"])
+        qry.bindValue(':tattoo', dog_dict["tattoo"])
+        
+        if qry.exec_():
+            self.con.commit()
         
     def get_breeds(self):
         

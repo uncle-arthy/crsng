@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Alexey Evdokimov'
 
+import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class DecoratedWindow(QtWidgets.QWidget):
@@ -168,7 +169,7 @@ class AddDogWindow(DecoratedWindow):
         dog_dict["breed_name"] = self.dog_breed_entry.currentText()
         dog_dict["gender"] = self.dog_gender_entry.currentText()
         dog_dict["owner"] = self.dog_owner_entry.text()
-        dog_dict["birthday"] = self.dog_birth_entry.date()
+        dog_dict["birthday"] = self.dog_birth_entry.date().toPyDate().strftime("%d.%m.%Y")
         dog_dict["doc"] = self.dog_doc_entry.text()
         dog_dict["racebook"] = self.dog_racebook_entry.text()
         dog_dict["tattoo"] = self.dog_tattoo_entry.text()
