@@ -57,12 +57,20 @@ class DatabaseHandler(object):
         
         dogs_fetch = []
         
-        # qry = QtSql.QSqlQuery('SELECT * FROM dogs, breeds WHERE dogs.breed_id=breeds.breed')
-        #
-        # if qry.isSelect():
-        #     qry.first()
-        #     while qry.isValid():
-        #         dogs_fetch.append((qry.value("id"), qry.value("name"), qry.value("breed_id")))
-        #         qry.next()
+        qry = QtSql.QSqlQuery('SELECT dogs.id, dogs.name, dogs.breed_id, dogs.gender, dogs.owner, dogs.birth, dogs.doc, dogs.racebook, dogs.tattoo, breeds.breed FROM dogs, breeds WHERE dogs.breed_id=breeds.id')
+
+        if qry.isSelect():
+            qry.first()
+            while qry.isValid():
+                dogs_fetch.append((qry.value("id"),
+                                   qry.value("name"),
+                                   qry.value("breed"),
+                                   qry.value("gender"),
+                                   qry.value("owner"),
+                                   qry.value("birth"),
+                                   qry.value("doc"),
+                                   qry.value("racebook"),
+                                   qry.value("tattoo")))
+                qry.next()
         
         return dogs_fetch

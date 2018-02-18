@@ -87,7 +87,19 @@ class DogManager(DecoratedWindow):
         self.dog_table.setAlternatingRowColors(True)
         self.dog_table.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.dog_table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.dog_table.setDragEnabled(False)
+        self.dog_table.verticalHeader().hide()
+        self.dog_table.setSortingEnabled(True)
         self.dog_table.setColumnCount(9)
+        self.dog_table.setColumnWidth(0, 50)
+        self.dog_table.setColumnWidth(1, 370)
+        self.dog_table.setColumnWidth(2, 120)
+        self.dog_table.setColumnWidth(3, 75)
+        self.dog_table.setColumnWidth(4, 200)
+        self.dog_table.setColumnWidth(5, 100)
+        self.dog_table.setColumnWidth(6, 100)
+        self.dog_table.setColumnWidth(7, 100)
+        self.dog_table.setColumnWidth(8, 100)
         
         # Table headers
         headers = ['DB ID', 'Dog name', 'Breed', 'Gender', 'Owner',
@@ -95,8 +107,23 @@ class DogManager(DecoratedWindow):
         self.dog_table.setHorizontalHeaderLabels(headers)
         
     def update_dog_table(self):
-        print(self.db.get_dogs())
-    
+        
+        dogs_list = self.db.get_dogs()
+        
+        self.dog_table.setRowCount(len(dogs_list))
+        
+        for row_num, entry in enumerate(dogs_list):
+            print(row_num, entry)
+            self.dog_table.setItem(row_num, 0, QtWidgets.QTableWidgetItem(str(entry[0])))
+            self.dog_table.setItem(row_num, 1, QtWidgets.QTableWidgetItem(entry[1]))
+            self.dog_table.setItem(row_num, 2, QtWidgets.QTableWidgetItem(entry[2]))
+            self.dog_table.setItem(row_num, 3, QtWidgets.QTableWidgetItem(entry[3]))
+            self.dog_table.setItem(row_num, 4, QtWidgets.QTableWidgetItem(entry[4]))
+            self.dog_table.setItem(row_num, 5, QtWidgets.QTableWidgetItem(entry[5]))
+            self.dog_table.setItem(row_num, 6, QtWidgets.QTableWidgetItem(entry[6]))
+            self.dog_table.setItem(row_num, 7, QtWidgets.QTableWidgetItem(entry[7]))
+            self.dog_table.setItem(row_num, 8, QtWidgets.QTableWidgetItem(entry[8]))
+            
     def add_dog_form(self):
         self.add_dog_form = AddDogWindow(self.db)
 
