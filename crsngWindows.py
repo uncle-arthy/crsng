@@ -87,11 +87,15 @@ class DogManager(DecoratedWindow):
         self.dog_table.setAlternatingRowColors(True)
         self.dog_table.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.dog_table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
-        self.dog_table.setRowCount(10)
-        self.dog_table.setColumnCount(6)
+        self.dog_table.setColumnCount(9)
+        
+        # Table headers
+        headers = ['DB ID', 'Dog name', 'Breed', 'Gender', 'Owner',
+                   'Birthday', 'Doc number', 'Racebook', 'Tattoo/Chip']
+        self.dog_table.setHorizontalHeaderLabels(headers)
         
     def update_dog_table(self):
-        pass
+        print(self.db.get_dogs())
     
     def add_dog_form(self):
         self.add_dog_form = AddDogWindow(self.db)

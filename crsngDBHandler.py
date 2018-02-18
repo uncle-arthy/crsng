@@ -41,7 +41,7 @@ class DatabaseHandler(object):
         
     def get_breeds(self):
         
-        qry = QtSql.QSqlQuery('SELECT * from breeds')
+        qry = QtSql.QSqlQuery('SELECT * FROM breeds')
         
         breeds_fetch = []
         
@@ -52,3 +52,17 @@ class DatabaseHandler(object):
                 qry.next()
         
         return breeds_fetch
+
+    def get_dogs(self, breed=None, gender=None):
+        
+        dogs_fetch = []
+        
+        # qry = QtSql.QSqlQuery('SELECT * FROM dogs, breeds WHERE dogs.breed_id=breeds.breed')
+        #
+        # if qry.isSelect():
+        #     qry.first()
+        #     while qry.isValid():
+        #         dogs_fetch.append((qry.value("id"), qry.value("name"), qry.value("breed_id")))
+        #         qry.next()
+        
+        return dogs_fetch

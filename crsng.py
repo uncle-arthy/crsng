@@ -4,7 +4,7 @@ __author__ = 'Alexei Evdokimov'
 
 
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, QtSql
 
 from crsngDBHandler import DatabaseHandler
 from crsngWindows import BreedsManager, DogManager, DecoratedWindow
